@@ -1,0 +1,21 @@
+{
+  "short_name": "URL Trimmer",
+  "name": "URL Trimmer - Fast & Secure Link Shortener",
+  "description": "Trim long URLs into short, shareable links instantly. Free, fast, and secure link shortener built with the MERN stack.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
