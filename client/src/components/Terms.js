@@ -90,7 +90,6 @@ const Terms = () => {
               className="flex items-center text-gray-600 hover:text-gray-900 text-sm whitespace-nowrap"
             >
               <ArrowLeft className="h-4 w-4 mr-1" />
-              Back to Home
             </Link>
             <Link
               to="/login"
