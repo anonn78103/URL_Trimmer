@@ -44,9 +44,8 @@ const AuthCallback = () => {
     setUser(userData);
 
     // Defer navigation until after state update
-    setTimeout(() => {navigate('/dashboard', { replace: true })},1500);
   } else {
-    navigate('/login', { replace: true });
+    navigate('/dashboard', { replace: true });
   }
 }, [searchParams, navigate, setUser]);
 
