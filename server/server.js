@@ -67,6 +67,15 @@ app.use('/api/urls', urlRoutes);
 
 //dddddd//
 app.get('/auth-callback', (req, res) => {
+  console.log("User data before redirect:", {
+  name,
+  email,
+  avatar,
+  token,
+  userId,
+  isPremium
+});
+
   const { token, userId, name, email, avatar, isPremium } = req.query;
 res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${userId}&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&avatar=${encodeURIComponent(avatar)}&isPremium=${isPremium}`);
 });
