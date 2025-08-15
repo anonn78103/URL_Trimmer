@@ -8,6 +8,7 @@ const AuthCallback = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { setUser } = useAuth();
+  console.log(window.location.href);
 
   useEffect(() => {
   const token = searchParams.get('token');
