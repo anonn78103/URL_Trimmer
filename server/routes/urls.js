@@ -136,25 +136,29 @@ router.get('/', protect, async (req, res) => {
 // @access  Private
 router.get('/analytics/summary', protect, async (req, res) => {
   try {
-    const totalUrls = await Url.countDocuments({ user: req.user.id });
+   const mongoose = require('mongoose');
+    const userId = new mongoose.Types.ObjectId(req.user.id);
+    
+    const totalUrls = await Url.countDocuments({ user: userId });
     const totalClicks = await Url.aggregate([
-      { $match: { user: req.user.id } },
+      { $match: { user: userId } },
       { $group: { _id: null, total: { $sum: '$clicks' } } }
     ]);
-    const recentUrls = await Url.find({ user: req.user.id })
+    const recentUrls = await Url.find({ user: userId })
       .sort('-createdAt')
       .limit(5)
       .select('title clicks createdAt');
-    const topUrls = await Url.find({ user: req.user.id })
+    const topUrls = await Url.find({ user: userId })
       .sort('-clicks')
       .limit(5)
       .select('title clicks originalUrl');
-    res.json({
+    const result ={
       totalUrls,
       totalClicks: totalClicks.length > 0 ? totalClicks[0].total : 0,
       recentUrls,
       topUrls
-    });
+    };
+    res.json(result);
   } catch (error) {
     console.error('Error fetching analytics:', error);
     res.status(500).json({ error: 'Server error' });
