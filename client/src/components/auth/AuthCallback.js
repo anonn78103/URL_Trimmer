@@ -9,19 +9,6 @@ const AuthCallback = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { setUser } = useAuth();
-  //start
-const query = new URLSearchParams(window.location.search);
-
-console.log("Frontend received query params:");
-for (const [key, value] of query.entries()) {
-  console.log(`${key}: ${value}`);
-}
-
-const name = query.get("name");
-console.log("Decoded name:", decodeURIComponent(name));
-//end
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
   
   useEffect(() => {
   const token = searchParams.get('token');
