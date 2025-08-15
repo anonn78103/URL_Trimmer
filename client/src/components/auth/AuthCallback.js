@@ -3,6 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { motion } from 'framer-motion';
 import { CheckCircle, Loader } from 'lucide-react';
+import { useLocation } from "react-router-dom";
 
 const AuthCallback = () => {
   const navigate = useNavigate();
@@ -19,7 +20,9 @@ for (const [key, value] of query.entries()) {
 const name = query.get("name");
 console.log("Decoded name:", decodeURIComponent(name));
 //end
-
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  
   useEffect(() => {
   const token = searchParams.get('token');
   const userId = searchParams.get('userId');
