@@ -43,22 +43,23 @@ router.post('/', protect, [
     }
 
     // Generate short code
-   let shortCode;
-    let isUnique = false;
-    let attempts = 0;
-    const maxAttempts = 10;
-
-    while (!isUnique && attempts < maxAttempts) {
-      shortCode = nanoid(3);
-      
-      // Check if this short code already exists
-      const existingShortCode = await Url.findOne({ shortCode });
-      if (!existingShortCode) {
-        isUnique = true;
-      } else {
-        attempts++;
-      }
-    }  //ddd
+  let shortCode;
+  let isUnique = false;
+  let attempts = 0;
+  const maxAttempts = 40;
+  while (!isUnique && attempts < maxAttempts) {
+    shortCode = nanoid(3);
+    const existingShortCode = await Url.findOne({ shortCode });
+    if (!existingShortCode) {
+      isUnique = true;
+    } else {
+      attempts++;
+    }
+  }
+  if (!isUnique) { 
+    shortCode = nanoid(4);  
+  }
+//ddd
     const shortUrl = `${process.env.CLIENT_URL || `${req.protocol}://${req.get('host')}`}/${shortCode}`;
 
 
