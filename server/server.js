@@ -22,6 +22,12 @@ app.use(cors({
   credentials: true
 }));
 
+app.options('*', cors({
+  origin: ['https://url-trimmer.01k.in', 'http://localhost:80'],
+  credentials: true
+}));
+
+
 app.use(express.json());
 app.use(express.static('public'));
 
