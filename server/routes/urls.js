@@ -23,11 +23,21 @@ router.post('/', protect, [
     const { originalUrl, title, description, tags } = req.body;
     
     // Validate URL format
-    const urlRegex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-    if (!urlRegex.test(originalUrl)) {
+    let urlToValidate = originalUrl;
+    // Add protocol if missing
+    if (!urlToValidate.match(/^https?:\/\//)) {
+      urlToValidate = 'https://' + urlToValidate;
+    }
+    
+    try {
+      // Use built-in URL constructor for better validation
+      new URL(urlToValidate);
+    } catch (error) {
       return res.status(400).json({ error: 'Invalid URL format' });
     }
-
+      return res.status(400).json({ error: 'Invalid URL format' });
+    }
+//dd
     // Check if URL already exists for this user
     const existingUrl = await Url.findOne({ originalUrl, user: req.user.id });
     if (existingUrl) {
