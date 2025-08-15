@@ -45,38 +45,41 @@ const AboutUs = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
-              <Link to="/" className="flex items-center space-x-3">
-                <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                  <ScissorsLineDashed className="h-8 w-8 text-white" />
-                </div>
-                <h1 className="text-2xl font-bold text-gray-900">URL Trimmer</h1>
-              </Link>
+    {/* Header */}
+    <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-nowrap justify-between items-center py-3 overflow-x-auto no-scrollbar">
+          
+          {/* Logo + Title */}
+          <Link to="/" className="flex items-center space-x-2 min-w-max">
+            <div className="h-9 w-9 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <ScissorsLineDashed className="h-6 w-6 text-white" />
             </div>
-            
-            <div className="flex items-center space-x-4">
-              <Link
-                to="/"
-                className="text-gray-600 hover:text-gray-900 px-4 py-2 rounded-lg transition-colors duration-200 flex items-center space-x-2"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                <span>Back to Home</span>
-              </Link>
-              <Link
-                to="/login"
-                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Sign In
-              </Link>
-            </div>
+            <h1 className="text-lg font-bold text-gray-900 whitespace-nowrap">
+              URL Trimmer
+            </h1>
+          </Link>
+  
+          {/* Buttons */}
+          <div className="flex items-center gap-3 min-w-max">
+            <Link
+              to="/"
+              className="flex items-center text-gray-600 hover:text-gray-900 text-sm whitespace-nowrap"
+            >
+              <ArrowLeft className="h-4 w-4 mr-1" />
+            </Link>
+            <Link
+              to="/login"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:from-blue-700 hover:to-indigo-700 transition-all shadow hover:shadow-md whitespace-nowrap"
+            >
+              Sign In
+            </Link>
           </div>
+  
         </div>
-      </header>
-
+      </div>
+    </header>
+                
       <main>
         {/* Hero Section */}
         <section className="py-20 px-4 sm:px-6 lg:px-8">
