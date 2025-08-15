@@ -18,15 +18,9 @@ app.set('trust proxy', 1);
 // Middleware
 app.use(helmet());
 app.use(cors({
-  origin: ['https://url-trimmer.01k.in', 'http://localhost:80'],
+  origin: ['https://url-trimmer.01k.in', 'https://localhost:80'],
   credentials: true
 }));
-
-app.options('*', cors({
-  origin: ['https://url-trimmer.01k.in', 'http://localhost:80'],
-  credentials: true
-}));
-
 
 app.use(express.json());
 app.use(express.static('public'));
