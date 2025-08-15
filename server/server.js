@@ -76,7 +76,7 @@ app.get('/:shortCode', async (req, res) => {
     }
 app.get('/auth-callback', (req, res) => {
   const { token, userId, name, email, avatar, isPremium } = req.query;
-  res.redirect(`https://your-frontend.com/auth-callback?token=${token}&userId=${userId}&name=${name}&email=${email}&avatar=${avatar}&isPremium=${isPremium}`);
+  res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${userId}&name=${name}&email=${email}&avatar=${avatar}&isPremium=${isPremium}`);
 });
 
     // Increment click count
