@@ -43,7 +43,22 @@ router.post('/', protect, [
     }
 
     // Generate short code
-    const shortCode = nanoid(8);
+   let shortCode;
+    let isUnique = false;
+    let attempts = 0;
+    const maxAttempts = 10;
+
+    while (!isUnique && attempts < maxAttempts) {
+      shortCode = nanoid(3);
+      
+      // Check if this short code already exists
+      const existingShortCode = await Url.findOne({ shortCode });
+      if (!existingShortCode) {
+        isUnique = true;
+      } else {
+        attempts++;
+      }
+    }  //ddd
     const shortUrl = `${process.env.CLIENT_URL || `${req.protocol}://${req.get('host')}`}/${shortCode}`;
 
 
