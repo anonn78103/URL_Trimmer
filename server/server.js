@@ -74,6 +74,10 @@ app.get('/:shortCode', async (req, res) => {
     if (!url) {
       return res.status(404).json({ error: 'URL not found or inactive' });
     }
+app.get('/auth-callback', (req, res) => {
+  const { token, userId, name, email, avatar, isPremium } = req.query;
+  res.redirect(`https://your-frontend.com/auth-callback?token=${token}&userId=${userId}&name=${name}&email=${email}&avatar=${avatar}&isPremium=${isPremium}`);
+});
 
     // Increment click count
     url.clicks += 1;
