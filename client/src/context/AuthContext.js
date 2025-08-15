@@ -143,7 +143,15 @@ export const AuthProvider = ({ children }) => {
       payload: { user, token }
     });
   };
-
+ const value = {
+    ...state,
+    register,
+    login,
+    logout,
+    updateProfile,
+    clearError,
+    setUser
+  };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
