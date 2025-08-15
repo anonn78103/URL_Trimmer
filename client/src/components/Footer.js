@@ -49,7 +49,7 @@ const Footer = () => {
             <ul className="space-y-3 text-gray-400">
               <li><Link to="/">Home</Link></li>
               <li><Link to="/about">About</Link></li>
-              <li><Link to="/login">SignIn</Link></li>
+              <li><Link to="/login">Sign In</Link></li>
               <li><Link to="/terms">Terms of Service</Link></li>
             </ul>
           </div>
