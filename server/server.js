@@ -68,15 +68,8 @@ app.use('/api/urls', urlRoutes);
 //dddddd//
 app.get('/auth-callback', (req, res) => {
   const { token, userId, name, email, avatar, isPremium } = req.query;
-  console.log("User data before redirect:", {
-  name,
-  email,
-  avatar,
-  token,
-  userId,
-  isPremium
-});
-res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}`);
+
+res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${user._id}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}`);
 });
 // Redirect to original URL (public route)
 app.get('/:shortCode', async (req, res) => {
