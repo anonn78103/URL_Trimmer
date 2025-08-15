@@ -137,20 +137,11 @@ export const AuthProvider = ({ children }) => {
   };
 
   const setUser = (userData) => {
+    const { token, ...user } = userData;
     dispatch({
       type: 'AUTH_SUCCESS',
-      payload: { user: userData, token: userData.token }
+      payload: { user, token }
     });
-  };
-
-  const value = {
-    ...state,
-    register,
-    login,
-    logout,
-    updateProfile,
-    clearError,
-    setUser
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
