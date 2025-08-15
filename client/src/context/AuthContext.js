@@ -119,6 +119,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     dispatch({ type: 'LOGOUT' });
+    window.location.href = '/';
   };
 
   const updateProfile = async (profileData) => {
