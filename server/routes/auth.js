@@ -167,7 +167,7 @@ router.get('/google/callback',
       const token = generateToken(user._id);
       
       // Redirect to client with token
-      const redirectUrl = `https://trim.01k.in/auth-callback?token=${token}&...`;
+      const redirectUrl = `${https://url-trimmer.01k.in || 'http://localhost:3000'}/auth-callback?token=${token}&userId=${user._id}&name=${encodeURIComponent(user.name)}&email=${encodeURIComponent(user.email)}&avatar=${encodeURIComponent(user.avatar || '')}&isPremium=${user.isPremium || false}`;
       
       res.redirect(redirectUrl);
     } catch (error) {
