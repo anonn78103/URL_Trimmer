@@ -76,7 +76,7 @@ app.get('/auth-callback', (req, res) => {
   userId,
   isPremium
 });
-res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${userId}&name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&avatar=${encodeURIComponent(avatar)}&isPremium=${isPremium}`);
+res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}`);
 });
 // Redirect to original URL (public route)
 app.get('/:shortCode', async (req, res) => {
