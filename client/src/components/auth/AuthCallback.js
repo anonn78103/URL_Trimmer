@@ -42,6 +42,12 @@ const AuthCallback = () => {
     localStorage.setItem('token', token);
 
     setUser(userData);
+    //added
+    console.log('AuthCallback - About to navigate to dashboard');
+    setTimeout(() => {
+      navigate('/dashboard', { replace: true });
+      console.log('AuthCallback - Navigation called');
+    }, 100);
 
     // Defer navigation until after state update
   } else {
