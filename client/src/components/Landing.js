@@ -1,32 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import { motion } from 'framer-motion';
+
 import { Link } from 'react-router-dom';
-import { 
-  ScissorsLineDashed, 
+import {
+  ScissorsLineDashed,
   Globe,
-  Link as LinkIcon, 
-  BarChart3, 
-  Shield, 
-  Zap, 
+  Link as LinkIcon,
+  BarChart3,
+  Shield,
+  Zap,
   Users,
-  ArrowRight
+  ArrowRight,
+  Menu,
+  X
 } from 'lucide-react';
+
+// Footer component imported from separate file
 import Footer from './Footer';
 
 const Landing = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-x-hidden">
       {/* Header */}
-      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center space-x-3">
+      <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex justify-between items-center py-6 w-full">
+            <div className="flex items-center space-x-3 flex-shrink-0">
               <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                 <ScissorsLineDashed className="h-8 w-8 text-white" />
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">URL Trimmer</h1>
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-900">URL Trimmer</h1>
             </div>
-            
+
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
               <Link
                 to="/about"
@@ -56,17 +73,95 @@ const Landing = () => {
 
             {/* Mobile menu button */}
             <div className="md:hidden">
-              <button className="text-gray-600 hover:text-gray-900">
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6" />
+                ) : (
+                  <Menu className="h-6 w-6" />
+                )}
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Overlay - Full Screen */}
+        <div
+          className={`md:hidden fixed inset-0 bg-white z-50 transition-all duration-300 ease-in-out ${
+            isMobileMenuOpen
+              ? 'translate-x-0 opacity-100'
+              : 'translate-x-full opacity-0'
+          }`}
+        >
+          <div className="flex flex-col h-full">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between p-6 bg-white">
+              <div className="flex items-center space-x-3">
+                <div className="h-10 w-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                  <ScissorsLineDashed className="h-6 w-6 text-white" />
+                </div>
+                <span className="text-xl font-bold text-gray-900">URL Trimmer</span>
+              </div>
+              <button
+                onClick={closeMobileMenu}
+                className="p-2 rounded-lg text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+                aria-label="Close mobile menu"
+              >
+                <X className="h-8 w-8" />
+              </button>
+            </div>
+
+            {/* Mobile Menu Links */}
+            <div className="flex-1 px-6 py-12 bg-gray-50">
+              <nav className="space-y-8">
+                <Link
+                  to="/"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between text-gray-900 text-2xl font-medium py-4 border-b border-gray-200 transition-colors duration-200"
+                >
+                  <span>Home</span>
+                </Link>
+                <Link
+                  to="/about"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between text-gray-900 text-2xl font-medium py-4 border-b border-gray-200 transition-colors duration-200"
+                >
+                  <span>About</span>
+                </Link>               
+                <Link
+                  to="/terms"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between text-gray-900 text-2xl font-medium py-4 border-b border-gray-200 transition-colors duration-200"
+                >
+                  <span>Terms</span>
+                </Link>
+                <Link
+                  to="/login"
+                  onClick={closeMobileMenu}
+                  className="flex items-center justify-between text-gray-900 text-2xl font-medium py-4 border-b border-gray-200 transition-colors duration-200"
+                >
+                  <span>Sign In</span>
+                </Link>
+              </nav>
+              
+              <div className="pt-12">
+                <Link
+                  to="/register"
+                  onClick={closeMobileMenu}
+                  className="block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg text-center font-semibold text-xl"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
+            {/* Hero Section */}
       <main>
         <section className="py-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto text-center">
@@ -251,9 +346,25 @@ const Landing = () => {
 
       {/* Footer */}
       <Footer />
+
+      <style jsx>{`
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.8s ease-out;
+        }
+      `}</style>
     </div>
   );
 };
 
 export default Landing;
-
