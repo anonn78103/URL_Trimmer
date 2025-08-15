@@ -64,6 +64,11 @@ app.get('/', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/urls', urlRoutes);
 
+//dddddd//
+app.get('/auth-callback', (req, res) => {
+  const { token, userId, name, email, avatar, isPremium } = req.query;
+  res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${userId}&name=${name}&email=${email}&avatar=${avatar}&isPremium=${isPremium}`);
+});
 // Redirect to original URL (public route)
 app.get('/:shortCode', async (req, res) => {
   try {
@@ -84,10 +89,6 @@ app.get('/:shortCode', async (req, res) => {
     console.error('Error redirecting:', error);
     res.status(500).json({ error: 'Server error' });
   }
-});
-app.get('/auth-callback', (req, res) => {
-  const { token, userId, name, email, avatar, isPremium } = req.query;
-  res.redirect(`https://url-trimmer.01k.in/auth-callback?token=${token}&userId=${userId}&name=${name}&email=${email}&avatar=${avatar}&isPremium=${isPremium}`);
 });
 
 app.listen(PORT, () => {
