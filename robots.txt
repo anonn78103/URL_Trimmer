@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://url-trimmer.01k.in/sitemap.xml
